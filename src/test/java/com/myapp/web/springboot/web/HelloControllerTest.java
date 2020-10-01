@@ -1,4 +1,4 @@
-package com.myapp.web.springboot.controller;
+package com.myapp.web.springboot.web;
 
 import com.myapp.web.springboot.web.HelloController;
 import org.junit.Test;
