@@ -1,5 +1,6 @@
 package com.myapp.web.springboot.domain.posts;
 
+import com.myapp.web.springboot.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +11,7 @@ import javax.persistence.*;
 @Getter             // 롬복 - getter 메소드 생성
 @NoArgsConstructor  // 롬복 - 기본 생성자 자동 추가
 @Entity             // JPA - 테이블과 링크될 클래스 | 기본적으로 Camel -> UnderScore로 매핑 | Ex) GoodPerson -> good_person
-public class Posts {
+public class Posts extends BaseTimeEntity {
     @Id // PK 필드
     @GeneratedValue(strategy = GenerationType.IDENTITY) // PK 규칙  | GenerationType.IDENTITY => Auto Increment
     private Long id; // Long으로 할시, Mysql에서는 bigint로 변환
