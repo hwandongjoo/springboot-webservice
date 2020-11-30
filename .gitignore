@@ -2,5 +2,4 @@
 /.gradle/
 .idea
 build
-src/main/resources/
 src/test/resources/
