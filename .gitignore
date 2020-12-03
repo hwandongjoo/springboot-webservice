@@ -1,7 +1,0 @@
-# Project exclude paths
-/.gradle/
-.idea
-build
-src/test/resources/
-#보안을 위해 방지
-application-oauth.properties
