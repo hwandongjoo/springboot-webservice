@@ -1,5 +1,6 @@
 package com.myapp.web.springboot.web;
 
+import com.myapp.web.springboot.config.auth.LoginUser;
 import com.myapp.web.springboot.config.auth.dto.SessionUser;
 import com.myapp.web.springboot.service.PostsService;
 import com.myapp.web.springboot.web.dto.PostsResponseDto;
@@ -19,10 +20,10 @@ public class IndexController {
     private final HttpSession httpSession;
 
     @GetMapping("/")
-    public String index(Model model) {
+    public String index(Model model, @LoginUser SessionUser user) {
         model.addAttribute("posts", postsService.findAllDesc());
         // CustomOAuth2UserService에서 로그인 성공시 세션에 SessionUser 저장하게 설정해둠
-        SessionUser user = (SessionUser) httpSession.getAttribute("user"); 
+//        SessionUser user = (SessionUser) httpSession.getAttribute("user"); // LoginUser 어노테이션으로 대체됨
         // 세션에 있으면 user 값을 가져옴
         if (user != null) {
             model.addAttribute("userName", user.getName());
