@@ -20,10 +20,13 @@ script: "./gradlew clean build"
 
 # Deploy용
 before_deploy:
-  - zip -r jpa-study *
-  - mkdir -p deploy
-  - mv jpa-study.zip deploy/jpa-study.zip
-
+  - mkdir -p before-deploy # zip에 포함시킬 파일들을 담을 디렉토리
+  - cp scripts/*.sh before-deploy/
+  - cp appspec.yml before-deploy/
+  - cp build/libs/*.jar before-deploy/
+  - cd before-deploy && zip -r before-deploy * # before-deploy 전체 압축
+  - cd ../ && mkdir -p deploy # deploy 디렉토리 생성
+  - mv before-deploy/before-deploy.jar deploy/jpa-study.zip
 deploy:
   - provider: s3
     access_key_id: $AWS_ACCESS_KEY # Travis repo settings에 설정된 값

@@ -4,3 +4,15 @@ files:
   - source: / # 루트경로, -> 전체파일 의미
     destination: /home/ec2-user/app/step2/zip/ # 소스에서 지정된 파일을 받는 경로
     overwrite: yes
+
+permissions:
+  - object: /
+    pattern: "**"
+    owner: ec2-user
+    group: ec2-user
+
+hooks:
+  ApplicationStart:
+    - location: deploy.sh
+      timeout: 60
+      runas: ec2-user
