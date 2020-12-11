@@ -35,4 +35,5 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-oauth2-client') // 소셜 로그인 용
     compile('org.springframework.session:spring-session-jdbc') // jdbc 추가
     testCompile("org.springframework.security:spring-security-test") //스프링 시큐리티 테스트용
+    compile("org.mariadb.jdbc:mariadb-java-client")
 }
