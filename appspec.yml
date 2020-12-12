@@ -2,7 +2,7 @@ version: 0.0 # codedeploy 버전
 os: linux
 files:
   - source: / # 루트경로, -> 전체파일 의미
-    destination: /home/ec2-user/app/step2/zip/ # 소스에서 지정된 파일을 받는 경로
+    destination: /home/ec2-user/app/step3/zip/ # 소스에서 지정된 파일을 받는 경로
     overwrite: yes
 
 permissions:
@@ -12,7 +12,15 @@ permissions:
     group: ec2-user
 
 hooks:
+  AfterInstall:
+    - location: stop.sh # ngnix와 연결되어 있지 않는 스프링 부트 종료
+      timeout: 60
+      runas: ec2-user
   ApplicationStart:
-    - location: deploy.sh
+    - location: start.sh # ngnix와 연결되어 있지 않은 port로 새 버전 스프링 부트 실행
+      timeout: 60
+      runas: ec2-user
+  ValidateService:
+    - location: health.sh # 새 스프링 부트가 정상적으로 실행되는지 확인
       timeout: 60
       runas: ec2-user
